@@ -1,0 +1,252 @@
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<title>Rainfall Rescue Writeup</title>
+		
+		<link href="style.css" rel="stylesheet">
+	</head>
+	
+	<body>
+		<div class="container">
+			<h1 class="font-proper">
+				Rainfall Rescue - A Writeup
+			</h1>
+			<div class="profile">
+				<img src="images/profile.jpg">
+				<div class="details">
+					<div class="name font-relaxed">Cian Yong Leow</div>
+					<div class="meta font-relaxed">August 4th, 2020 · 10 min read</div>
+				</div>
+				<div class="social">
+					<a href="https://www.linkedin.com/in/cianyleow/">
+						<svg role="img" viewBox="0 0 24 24" class="icon">
+							<path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+						</svg>
+					</a>
+						
+					<a href="https://github.com/cianyleow">
+						<svg role="img" viewBox="0 0 24 24" class="icon">
+							<path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+						</svg>
+					</a>
+				</div>
+			</div>
+			
+			<div class="article">
+				<img src="images/FullPage_Top.jpg" class="main" />
+			
+				<p>At the start of the COVID-19 lockdowns I came across an <a href="https://www.bbc.com/news/science-environment-52040822">article on the BBC</a> requesting help digitizing historical rainfall records in the UK. A little bored at home, I managed to spend five minutes transcribing records manually before I started thinking about ways to make the job more efficient (and interesting for me).</p>
+				
+				<p>The records were all pretty much identical and highly organized – at the core of each page, a grid of handwritten records organized by month/year. Could I just feed the high-quality scans into the <a href="https://cloud.google.com/vision/docs/ocr">Google Cloud Vision API</a> and get the results in seconds with OCR?</p>
+				
+				<div class="figure-group">
+					<!--<figure class="half">
+						#Standard Scanned Record
+					</figure>
+					
+					<figure class="half">
+					
+						#Google OCR Output
+					</figure>-->
+					<figure>
+						<img src="images/Google_OCR.PNG" />
+						<figcaption>The output for the Google Cloud Vision API, unable to process some handwritten numbers and unaware of spatial context.</figcaption>
+					</figure>
+				</div>
+				
+				<p>While the Cloud Vision API is accurate at recognizing characters and text, there were two fairly major issues:</p>
+				
+				<ol>
+					<li>Handwriting is difficult for OCR algorithms to identify</li>
+					<li>The spatial context of these records is very important – each cell represents a specific time record and, more annoyingly, not every cell has to be filled in</li>
+				</ol>
+				
+				<p>With the failure of the easy route, I started looking down the harder, but admittedly more interesting route, of putting together an image processing workflow to identify handwritten numbers in each of the temporally indexed cells of the main table.</p>
+				
+				<h2>The Plan</h2>
+				
+				<p>The original plan was simple:</p>
+				
+				<ol>
+					<li>Define a grid of cells on the page (one for each month/year combination)</li>
+					<li>Run some handwriting compatible OCR on each cell</li>
+					<li>Present my results and collect the Nobel Prize for contributions to the Environment</li>
+				</ol>
+				
+				<p>As always, the best laid plans are foiled, and I ran into a few problems along the way. In the end, the plan looked something more like this:</p>
+				
+				<div class="figure-group">
+					<figure class="half">
+						<img src="images/holding.png" />
+						<figcaption>Extract Primary Data Region</figcaption>
+					</figure>
+					
+					<figure class="half">
+						<img src="images/holding.png" />
+						<figcaption>Identify the boundaries of each grid cell</figcaption>
+					</figure>
+					
+					<figure class="half">
+						<img src="images/holding.png" />
+						<figcaption>Use a <i>homemade</i> neural network to identify digits</figcaption>
+					</figure>
+					
+					<figure class="half">
+						<img src="images/holding.png" />
+						<figcaption>Perform manual verification and continuous model training</figcaption>
+					</figure>
+				</div>
+				
+				<h2>The Work</h2>
+				
+				<p>In my opinion, the most difficult part of adopting any new tool is figuring out how to present your problems in a way it can <i>efficiently</i> solve them – in essence, creating the proverbial nail for a hammer. My tool of choice this time? OpenCV2, the de-facto standard for computer vision.</p>
+				
+				<p>While it is a wonderfully powerful library, OpenCV2 only shines when the source image has been adequately prepared. Trying to jump from a page full of text to a spreadsheet of numbers would be as pointless as my Google Cloud Vision experiment, so an image processing workflow would be required!</p>
+				
+				<h3>1) Extracting the Primary Data Region</h3>
+				
+				<p>Step one of the workflow was normalizing the scanned sheets into a semi-consistent state (i.e. a smart crop). By isolating the primary data region, as seen below, the next steps in the workflow became significantly simpler.</p>
+				
+				<div class="figure-group">
+					<figure>
+						<img src="images/PDR.jpg" />
+						<figcaption>The 'primary data region', or data table, of a scanned rainfall record.</figcaption>
+					</figure>
+				</div>
+				
+				<p>The smart crop process included a couple of key steps:</p>
+				
+				<ol>
+					<li>Transforming the image to ensure it was parallel to the view frame (i.e. perfectly horizontal and vertical lines)</li>
+					<li>Extracting the primary data region with the <i>full</i> border included (an important aspect of the next stage)</li>
+				</ol>
+				
+				<p>The entire process can be seen below and essentially uses computer vision to ‘look’ for a large enough rectangle in the right position on the page.</p>
+				
+				<div class="figure-group">
+					<figure class="half">
+						<img src="images/1-1.png" />
+						<figcaption>The original image being transformed to parallel the view port</figcaption>
+					</figure>
+					
+					<figure class="half">
+						<img src="images/1-2.png" />
+						<figcaption>Vertical lines being analyzed and extracted</figcaption>
+					</figure>
+					
+					<figure class="half">
+						<img src="images/1-3.png" />
+						<figcaption>Horizontal lines being analyzed and extracted</figcaption>
+					</figure>
+					
+					<figure class="half">
+						<img src="images/1-4.png" />
+						<figcaption>The extracted lines combined and the PDR identified</figcaption>
+					</figure>
+				</div>
+				
+				<!--<p>Have a look at the code (click the + to expand the code viewer) for a detailed view of how computer vision was actually finding the rectangle.</p>-->
+				
+				<h3>2) Creating a Grid of Cells</h3>
+				
+				<p>With the main data grid extracted, the next step was to accurately define a cartesian grid of month/year boxes to send for OCR. Once configured, the values of each month/year combination would be individually identifiable and empty cells would no longer be an issue.</p>
+				
+				<p>Thanks to the smart cropping in step one, defining the columns for each year was surprisingly easy. With a perfectly aligned and cropped image, the thirteen vertical column edges were easily discernible and the primary data region went from a single image to twelve discrete column in about thirty lines of code<!-- (click the + to expand the code viewer)-->.</p>
+				
+				<div class="figure-group">
+					<figure class="half">
+						<img src="images/2-1.png" />
+						<figcaption>Isolating the vertical lines in the image</figcaption>
+					</figure>
+					
+					<figure class="half">
+						<img src="images/2-2.png" />
+						<figcaption>Identifying the column locations in the original image</figcaption>
+					</figure>
+				</div>
+				
+				<figure>
+					<img src="images/2-3.png" />
+					<figcaption>The final result - each column as a separate image</figcaption>
+				</figure>
+				
+				<p>On the flip side, finding the row coordinates was a lot more involved. As there were both no lines between each monthly row and the spacing was slightly variable, using line detection, approximations or other short cuts was out the question.</p>
+				
+				<p>After some brain storming, my eureka moment came when I realized there are row markers – the months of the year – and by plugging the text into an OCR library, the locations of each row could be ‘read’ from the page!</p>
+				
+				<figure>
+					<img src="images/holding.png" />
+					<figcaption>Field names on the left hand side of the 'Primary Data Region' provide row markers</figcaption>
+				</figure>
+				
+				<p>Unfortunately, 100 year old type writer text (the records stretch back to the late 1800s) didn’t always play well with out-of-the-box <a href="https://opensource.google/projects/tesseract">Tesseract OCR library</a> and trying to match the occasional <code>jx9138</code> with <code>January</code>, <code>June</code> or <code>July</code> was hardly a robust solution.</p>
+				
+				<figure>
+					<img src="images/holding.png" />
+					<figcaption>Incorrectly predicted values from off the shelf OCR of the field names</figcaption>
+				</figure>
+				
+				<p>Back at the drawing board, I was researching ways to teach Tesseract to better recognise 100 year old type writer text when I realised: I didn’t actually need to read the text, I just needed to recognise twelve different words – the months of the year.</p>
+				
+				<p>And thus, a trivially simple neural network was defined and trained to recognise the 17 words in the primary data region and a robust process for finding row coordinates was created.</p>
+				
+				<figure>
+					<img src="images/2-6.png" />
+					<figcaption>Object detection and basic machine learning used to 'read' the page and find the row boundaries for each month</figcaption>
+				</figure>
+				
+				<p>Et voila, with the row and column coordinates, finally a grid of individual cells could be extracted for digit detection!</p>
+				
+				<figure>
+					<img src="images/2-7.png" />
+					<figcaption>The resulting cartesian grid of cells, one for each year-month combination</figcaption>
+				</figure>
+				
+				<h3>3) Reading Handwritten Digits into a Spreadsheet</h3>
+				
+				<p>The final stage of the image processing workflow was to ‘read’ the digits in the cell and report a numeric value. Having already determined that off-the-shelf OCR libraries are poor at processing handwriting, and buoyed by the success of my simple AI for reading the months of the year, I decided to create another neural network to identify the numeric value of each cell.</p>
+				
+				<figure>
+					<img src="images/holding.png" />
+					<figcaption>A visualisation of a neural network predicting the numeric value of a cell</figcaption>
+				</figure>
+				
+				<p>Obviously (it took me a day to figure this one out) training a neural network to identify decimal numbers – which are technically an infinite series – is a fruitless task. However, training a neural network to identify the 10 base digits and a decimal point is much, much easier.</p>
+				
+				<p>The digits, selected with basic contour selection in OpenCV2:</p>
+				
+				<figure>
+					<img src="images/3-2.png" />
+					<figcaption>A single cell with each component digit highlighted to be identified individually</figcaption>
+				</figure>
+				
+				<p>Were then pre-processed to be run through the neural network:</p>
+				
+				<figure>
+					<img src="images/3-3.png" />
+					<figcaption>The component digits of a cell prepared for a neural network to predict their value</figcaption>
+				</figure>
+				
+				<p>And, with all the digit predictions combined, a single, numeric, value (and prediction confidence) was outputted for the cell:</p>
+				
+				<figure>
+					<img src="images/holding.png" />
+					<figcaption>The value of a cell (built from the individually predicted digits) and confidence</figcaption>
+				</figure>
+				
+				<p>Thus, having trained a second neural network to read the component digits of each cell, the workflow was complete and finally, numeric predictions of each cell could be produced at scale.</p>
+				
+				<figure>
+					<img src="images/holding.png" />
+					<figcaption>The outputted CSV file of predictions next to the original PDF input</figcaption>
+				</figure>
+				
+				<h2>Conclusion</h2>
+				
+				<p>After two weeks of work and armed with the capability to turn a PDF scan into a CSV of predictions, I logged back onto the Rainfall Rescue page. It was at that moment that I realized 16,000 volunteers, with a COVID-19 lockdown to reckon with, had surpassed the projects volunteering expectations and <i>smashed</i> through the remaining 60,000 pages in record time.</p>
+			</div>
+		</div>
+	</body>
+</html>
