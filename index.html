@@ -42,14 +42,6 @@
 				<p>The records were all pretty much identical and highly organized – at the core of each page, a grid of handwritten records organized by month/year. Could I just feed the high-quality scans into the <a href="https://cloud.google.com/vision/docs/ocr">Google Cloud Vision API</a> and get the results in seconds with OCR?</p>
 				
 				<div class="figure-group">
-					<!--<figure class="half">
-						#Standard Scanned Record
-					</figure>
-					
-					<figure class="half">
-					
-						#Google OCR Output
-					</figure>-->
 					<figure>
 						<img src="images/Google_OCR.PNG" />
 						<figcaption>The output for the Google Cloud Vision API, unable to process some handwritten numbers and unaware of spatial context.</figcaption>
@@ -84,7 +76,7 @@
 					</figure>
 					
 					<figure class="half">
-						<img src="images/holding.png" />
+						<img src="images/0-2.png" />
 						<figcaption>Identify the boundaries of each grid cell</figcaption>
 					</figure>
 					
@@ -147,13 +139,11 @@
 					</figure>
 				</div>
 				
-				<!--<p>Have a look at the code (click the + to expand the code viewer) for a detailed view of how computer vision was actually finding the rectangle.</p>-->
-				
 				<h3>2) Creating a Grid of Cells</h3>
 				
 				<p>With the main data grid extracted, the next step was to accurately define a cartesian grid of month/year boxes to send for OCR. Once configured, the values of each month/year combination would be individually identifiable and empty cells would no longer be an issue.</p>
 				
-				<p>Thanks to the smart cropping in step one, defining the columns for each year was surprisingly easy. With a perfectly aligned and cropped image, the thirteen vertical column edges were easily discernible and the primary data region went from a single image to twelve discrete column in about thirty lines of code<!-- (click the + to expand the code viewer)-->.</p>
+				<p>Thanks to the smart cropping in step one, defining the columns for each year was surprisingly easy. With a perfectly aligned and cropped image, the thirteen vertical column edges were easily discernible and the primary data region went from a single image to twelve discrete column in about thirty lines of code.</p>
 				
 				<div class="figure-group">
 					<figure class="half">
@@ -243,9 +233,82 @@
 					<figcaption>The outputted CSV file of predictions next to the original PDF input</figcaption>
 				</figure>
 				
-				<h2>Conclusion</h2>
+				<h3>4) Manual Verification & Continuous Model Training</h3>
 				
 				<p>After two weeks of work and armed with the capability to turn a PDF scan into a CSV of predictions, I logged back onto the Rainfall Rescue page. It was at that moment that I realized 16,000 volunteers, with a COVID-19 lockdown to reckon with, had surpassed the projects volunteering expectations and <i>smashed</i> through the remaining 60,000 pages in record time.</p>
+				
+				<figure>
+					<img src="images/ProjectOver.png" />
+					<figcaption>The Rainfall Rescue Project, just as my data processing workflow came online.</figcaption>
+				</figure>
+				
+				<p>The volunteers had done such a good job that the project owner estimated that records were > 99% accurate on the first attempt and had been cross verified by at least two people.</p>
+				
+				<p>In direct contrast to that, my predictions were averaging around 88% and dipping below 80% in some cases!</p>
+				
+				<figure>
+					<img src="images/Accuracy.png" />
+					<figcaption>Percentage accuracy of thirty four PDF scans tested with the prediction workflow</figcaption>
+				</figure>
+				
+				<p>While the Rainfall Rescue Project was complete and my work wouldn't have added anything to the data set, I spent a couple more days analysing the results as I was interested in improving the original prediction accuracy as much as possible.</p>
+				
+				<p>To identify the most common prediction issues I created a simple 'Manual Verification' web app.</p>
+				
+				<figure>
+					<img src="images/ManualVerification.png" />
+					<figcaption>A web app to perform rapid visual verification and error identification</figcaption>
+				</figure>
+				
+				<p>Designed to aid rapid visual verification and enable error identification, the web app used a point and click interface to highlight problematic predictions</p>
+				
+				<p>In the end, the four most common prediction issues - pictured below - were actually fairly easy to tackle.</p>
+				
+				<div class="figure-group">
+					<figure class="quarter">
+						<img src="images/Issue-1.png" />
+						<figcaption>Ink smudges</figcaption>
+					</figure>
+					
+					<figure class="quarter">
+						<img src="images/Issue-2.png" />
+						<figcaption>Conjoined digits</figcaption>
+					</figure>
+					
+					<figure class="quarter">
+						<img src="images/Issue-3.png" />
+						<figcaption>Poor alignment</figcaption>
+					</figure>
+					
+					<figure class="quarter">
+						<img src="images/Issue-4.png" />
+						<figcaption>Decimal place confusion</figcaption>
+					</figure>
+				</div>
+				
+				<p>Making small changes to the code, I added rules to 'hide' smudged ink, 'split' joined digits down the middle, 're-align' offset text and 'size check' decimal places.</p>
+				
+				<p>The result?</p>
+				
+				<p>A <b>7% improvement</b> in prediction accuracy, bringing the <b>average up to ~95%.</b></p>
+				
+				<h2>Wrapping Up</h2>
+				
+				<p>Having achieved a letter grade of 'A' in prediction accuracy at the time, I was done with the project and didn't really think about it until I started this writeup.</p>
+				
+				<p>Strangely, I realized that despite having two weeks of work never be used, I had really enjoyed myself.</p>
+				
+				<p>It was satisfying to see a PDF scan get dissected with OpenCV2 and exciting (COVID-19 has really lowered my bar for entertainment) to see the accuracy of the predictions coming out of a neural network that I had built.</p>
+				
+				<p>At the end of the day, I find putting structure around data fairly relaxing and actually compare it to building Lego without instructions. Although all the blocks <i>can</i> fit together, it is far more interesting when they're put together to create a rocket or a building.</p>
+			</div>
+		</div>
+		
+		<div class="footer">
+			<div class="container">
+				<div class="copy">
+					<b>&copy; 2020</b> &mdash; <a href="https://github.com/cianyleow/rainfall">Actually Made By Me</a>
+				</div>
 			</div>
 		</div>
 	</body>

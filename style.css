@@ -158,3 +158,31 @@ figure.half {
 figure.half:nth-child(2n) {
 	margin-right: 0px !important;
 }
+
+figure.quarter {
+	width: calc(25% - 6px);
+	margin-right: 8px;
+}
+
+figure.quarter:nth-child(4n) {
+	margin-right: 0px !important;
+}
+
+.footer {
+	width: 100%;
+	border-top: 2px solid #eee;
+	margin-top: 30px;
+}
+
+.copy {
+	font-family: medium-content-sans-serif-font, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Arial, sans-serif;
+	padding: 10px 0;
+	line-height: 15px;
+	font-size: 15px;
+}
+
+.copy > a {
+	text-decoration: none;
+	border-bottom: 1px dotted #000;
+	color: #000;
+}
