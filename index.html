@@ -71,8 +71,8 @@
 				
 				<div class="figure-group">
 					<figure class="half">
-						<img src="images/holding.png" />
-						<figcaption>Extract Primary Data Region</figcaption>
+						<img src="images/0-1.png" />
+						<figcaption>Extract the Primary Data Region</figcaption>
 					</figure>
 					
 					<figure class="half">
@@ -81,12 +81,12 @@
 					</figure>
 					
 					<figure class="half">
-						<img src="images/holding.png" />
+						<img src="images/0-3.png" />
 						<figcaption>Use a <i>homemade</i> neural network to identify digits</figcaption>
 					</figure>
 					
 					<figure class="half">
-						<img src="images/holding.png" />
+						<img src="images/0-4.png" />
 						<figcaption>Perform manual verification and continuous model training</figcaption>
 					</figure>
 				</div>
@@ -167,14 +167,14 @@
 				<p>After some brain storming, my eureka moment came when I realized there are row markers – the months of the year – and by plugging the text into an OCR library, the locations of each row could be ‘read’ from the page!</p>
 				
 				<figure>
-					<img src="images/holding.png" />
+					<img src="images/PDR_Marked.png" />
 					<figcaption>Field names on the left hand side of the 'Primary Data Region' provide row markers</figcaption>
 				</figure>
 				
-				<p>Unfortunately, 100 year old type writer text (the records stretch back to the late 1800s) didn’t always play well with out-of-the-box <a href="https://opensource.google/projects/tesseract">Tesseract OCR library</a> and trying to match the occasional <code>jx9138</code> with <code>January</code>, <code>June</code> or <code>July</code> was hardly a robust solution.</p>
+				<p>Unfortunately, 100 year old type writer text (the records stretch back to the late 1800s) didn’t always play well with out-of-the-box <a href="https://opensource.google/projects/tesseract">Tesseract OCR library</a> and trying to make sense of the occasional <code>RT a</code>, <code>Bist</code>, <code>ACen ayindensy</code> or <code>Ppa</code> was hardly a robust solution.</p>
 				
 				<figure>
-					<img src="images/holding.png" />
+					<img src="images/BadTesseract.png" />
 					<figcaption>Incorrectly predicted values from off the shelf OCR of the field names</figcaption>
 				</figure>
 				
@@ -199,8 +199,8 @@
 				<p>The final stage of the image processing workflow was to ‘read’ the digits in the cell and report a numeric value. Having already determined that off-the-shelf OCR libraries are poor at processing handwriting, and buoyed by the success of my simple AI for reading the months of the year, I decided to create another neural network to identify the numeric value of each cell.</p>
 				
 				<figure>
-					<img src="images/holding.png" />
-					<figcaption>A visualisation of a neural network predicting the numeric value of a cell</figcaption>
+					<img src="images/SortedDigits.png" />
+					<figcaption>Sorted images eventually used to train the neural network to identify individual digits</figcaption>
 				</figure>
 				
 				<p>Obviously (it took me a day to figure this one out) training a neural network to identify decimal numbers – which are technically an infinite series – is a fruitless task. However, training a neural network to identify the 10 base digits and a decimal point is much, much easier.</p>
@@ -219,17 +219,17 @@
 					<figcaption>The component digits of a cell prepared for a neural network to predict their value</figcaption>
 				</figure>
 				
-				<p>And, with all the digit predictions combined, a single, numeric, value (and prediction confidence) was outputted for the cell:</p>
+				<p>And, with all the digit predictions combined, a single, numeric, value was outputted for the cell:</p>
 				
 				<figure>
-					<img src="images/holding.png" />
-					<figcaption>The value of a cell (built from the individually predicted digits) and confidence</figcaption>
+					<img src="images/PredictedValues.png" />
+					<figcaption>The value of a cell (built from the individually predicted digits)</figcaption>
 				</figure>
 				
 				<p>Thus, having trained a second neural network to read the component digits of each cell, the workflow was complete and finally, numeric predictions of each cell could be produced at scale.</p>
 				
 				<figure>
-					<img src="images/holding.png" />
+					<img src="images/SideBySide.png" />
 					<figcaption>The outputted CSV file of predictions next to the original PDF input</figcaption>
 				</figure>
 				
