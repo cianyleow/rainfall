@@ -1,3 +1,7 @@
+* {
+	box-sizing: border-box;
+}
+
 body {
 	margin: 0;
 	padding: 0;
@@ -12,8 +16,12 @@ body {
 }
 
 .container {
-	width: 780px;
-	margin: 0 auto;
+	width: 100%;
+	padding: 0px 10px;
+}
+
+.profile > .social {
+	display: none;
 }
 
 h1 {
@@ -60,29 +68,6 @@ h1 {
 	color: #888;
 }
 
-.profile > .social {
-	float: right;
-}
-
-.profile > .social > a {
-	display: block;
-	float: left;
-	text-decoration: none;
-}
-
-.profile > .social > a:hover > svg.icon {
-	fill: #888;
-}
-
-.profile > .social > a > svg.icon {
-	fill: #ccc;
-	width: 24px;
-	height: 24px;
-	margin-left: 12px;
-	margin-top: 12px;
-	
-}
-
 .article > p > a {
 	text-decoration: none;
 	border-bottom: 1px dotted #000;
@@ -90,15 +75,15 @@ h1 {
 }
 
 code {
-	border-radius: 5px;
-	padding: 5px;
+	border-radius: 3px;
+	padding: 3px;
 	background: #EEE;
 }
 
 .article > p, .article > ol {
 	font-family: medium-content-title-font, Georgia, Cambria, "Times New Roman", Times, serif;
-	font-size: 21px;
-	line-height: 32px;
+	font-size: 17px;
+	line-height: 24px;
 	text-justify: inter-word;
 }
 
@@ -150,24 +135,6 @@ figcaption {
 	float: left;
 }
 
-figure.half {
-	width: calc(50% - 5px);
-	margin-right: 10px;
-}
-
-figure.half:nth-child(2n) {
-	margin-right: 0px !important;
-}
-
-figure.quarter {
-	width: calc(25% - 6px);
-	margin-right: 8px;
-}
-
-figure.quarter:nth-child(4n) {
-	margin-right: 0px !important;
-}
-
 .footer {
 	width: 100%;
 	border-top: 2px solid #eee;
@@ -185,4 +152,63 @@ figure.quarter:nth-child(4n) {
 	text-decoration: none;
 	border-bottom: 1px dotted #000;
 	color: #000;
+}
+
+@media only screen and (min-width: 780px) {
+	.container {
+		width: 780px;
+		margin: 0 auto;
+		padding: 0;
+	}
+	
+	.profile > .social {
+		display: block;
+		float: right;
+	}
+
+	.profile > .social > a {
+		display: block;
+		float: left;
+		text-decoration: none;
+	}
+
+	.profile > .social > a:hover > svg.icon {
+		fill: #888;
+	}
+
+	.profile > .social > a > svg.icon {
+		fill: #ccc;
+		width: 24px;
+		height: 24px;
+		margin-left: 12px;
+		margin-top: 12px;
+	}
+	
+	.article > p, .article > ol {
+		font-size: 21px;
+		line-height: 32px;
+	}
+	
+	figure.half {
+		width: calc(50% - 5px);
+		margin-right: 10px;
+	}
+
+	figure.half:nth-child(2n) {
+		margin-right: 0px !important;
+	}
+
+	figure.quarter {
+		width: calc(25% - 6px);
+		margin-right: 8px;
+	}
+
+	figure.quarter:nth-child(4n) {
+		margin-right: 0px !important;
+	}
+	
+	code {
+		border-radius: 5px;
+		padding: 5px;
+	}
 }
