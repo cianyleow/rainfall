@@ -108,6 +108,10 @@ picture.main {
 	width: 100%;
 }
 
+picture.main > img {
+	width: 100%;
+}
+
 figure {
 	margin: 0;
 	margin-bottom: 10px;
