@@ -14,7 +14,11 @@
 				Rainfall Rescue - A Writeup
 			</h1>
 			<div class="profile">
-				<img src="images/profile.jpg">
+				<picture>
+					<source type="image/webp" srcset="images/webp/profile_1x.webp 1x, images/webp/profile_1.5x.webp 1.5x, images/webp/profile_2x.webp 2x, images/webp/profile_2.5x.webp 2.5x, images/webp/profile_3x.webp 3x">
+					<source type="image/jpeg" srcset="images/profile_1x.jpg 1x, images/profile_1.5x.jpg 1.5x, images/profile_2x.jpg 2x, images/profile_2.5x.jpg 2.5x, images/profile_3x.jpg 3x">
+					<img src="images/profile_1x.jpg">
+				</picture>
 				<div class="details">
 					<div class="name font-relaxed">Cian Yong Leow</div>
 					<div class="meta font-relaxed">August 4th, 2020 · 10 min read</div>
@@ -35,7 +39,11 @@
 			</div>
 			
 			<div class="article">
-				<img src="images/FullPage_Top.jpg" class="main" />
+				<picture class="main">
+					<source type="image/webp" srcset="images/webp/FullPage_Top_1x.webp 1x, images/webp/FullPage_Top_1.5x.webp 1.5x, images/webp/FullPage_Top_2x.webp 2x, images/webp/FullPage_Top_2.5.webp 2.5x, images/webp/FullPage_Top_3x.webp 3x">
+					<source type="image/jpg" srcset="images/FullPage_Top_1x.jpg 1x, images/FullPage_Top_1.5x.jpg 1.5x, images/FullPage_Top_2x.jpg 2x, images/FullPage_Top_2.5.jpg 2.5x, images/FullPage_Top_3x.jpg 3x">
+					<img src="images/FullPage_Top_1x.jpg">
+				</picture>
 			
 				<p>At the start of the COVID-19 lockdowns I came across an <a href="https://www.bbc.com/news/science-environment-52040822">article on the BBC</a> requesting help digitizing historical rainfall records in the UK. A little bored at home, I managed to spend five minutes transcribing records manually before I started thinking about ways to make the job more efficient (and interesting for me).</p>
 				
@@ -43,7 +51,11 @@
 				
 				<div class="figure-group">
 					<figure>
-						<img src="images/Google_OCR.PNG" />
+						<picture>
+							<source type="image/webp" srcset="images/webp/Google_OCR_1x.webp 1x, images/webp/Google_OCR_1.5x.webp 1.5x">
+							<source type="image/jpeg" srcset="images/Google_OCR_1x.jpg 1x, images/Google_OCR_1.5x.jpg 1.5x">
+							<img src="images/Google_OCR_1x.jpg">
+						</picture>
 						<figcaption>The output for the Google Cloud Vision API, unable to process some handwritten numbers and unaware of spatial context.</figcaption>
 					</figure>
 				</div>
@@ -71,22 +83,38 @@
 				
 				<div class="figure-group">
 					<figure class="half">
-						<img src="images/0-1.png" />
+						<picture>
+							<source type="image/webp" srcset="images/webp/0-1_1x.webp 1x, images/webp/0-1_1.5x.webp 1.5x, images/webp/0-1_2x.webp 2x, images/webp/0-1_2.5x.webp 2.5x, images/webp/0-1_3x.webp 3x">
+							<source type="image/png" srcset="images/0-1_1x.png 1x, images/0-1_1.5x.png 1.5x, images/0-1_2x.png 2x, images/0-1_2.5x.png 2.5x, images/0-1_3x.png 3x">
+							<img src="images/0-1_1x.png">
+						</picture>
 						<figcaption>Extract the Primary Data Region</figcaption>
 					</figure>
 					
 					<figure class="half">
-						<img src="images/0-2.png" />
+						<picture>
+							<source type="image/webp" srcset="images/webp/0-2_1x.webp 1x, images/webp/0-2_1.5x.webp 1.5x, images/webp/0-2_2x.webp 2x, images/webp/0-2_2.5x.webp 2.5x">
+							<source type="image/png" srcset="images/0-2_1x.png 1x, images/0-2_1.5x.png 1.5x, images/0-2_2x.png 2x, images/0-2_2.5x.png 2.5x">
+							<img src="images/0-2_1x.png">
+						</picture>
 						<figcaption>Identify the boundaries of each grid cell</figcaption>
 					</figure>
 					
 					<figure class="half">
-						<img src="images/0-3.png" />
+						<picture>
+							<source type="image/webp" srcset="images/webp/0-3_1x.webp 1x, images/webp/0-3_1.5x.webp 1.5x, images/webp/0-3_2x.webp 2x, images/webp/0-3_2.5x.webp 2.5x, images/webp/0-3_3x.webp 3x">
+							<source type="image/png" srcset="images/0-3_1x.png 1x, images/0-3_1.5x.png 1.5x, images/0-3_2x.png 2x, images/0-3_2.5x.png 2.5x, images/0-3_3x.png 3x">
+							<img src="images/0-3_1x.png">
+						</picture>
 						<figcaption>Use a <i>homemade</i> neural network to identify digits</figcaption>
 					</figure>
 					
 					<figure class="half">
-						<img src="images/0-4.png" />
+						<picture>
+							<source type="image/webp" srcset="images/webp/0-4_1x.webp 1x, images/webp/0-4_1.5x.webp 1.5x, images/webp/0-4_2x.webp 2x, images/webp/0-4_2.5x.webp 2.5x, images/webp/0-4_3x.webp 3x">
+							<source type="image/png" srcset="images/0-4_1x.png 1x, images/0-4_1.5x.png 1.5x, images/0-4_2x.png 2x, images/0-4_2.5x.png 2.5x, images/0-4_3x.png 3x">
+							<img src="images/0-4_1x.png">
+						</picture>
 						<figcaption>Perform manual verification and continuous model training</figcaption>
 					</figure>
 				</div>
@@ -103,7 +131,11 @@
 				
 				<div class="figure-group">
 					<figure>
-						<img src="images/PDR.jpg" />
+						<picture>
+							<source type="image/webp" srcset="images/webp/PDR_1x.webp 1x, images/webp/PDR_1.5x.webp 1.5x">
+							<source type="image/jpeg" srcset="images/PDR_1x.jpg 1x, images/PDR_1.5x.jpg 1.5x">
+							<img src="images/PDR_1x.jpg">
+						</picture>
 						<figcaption>The 'primary data region', or data table, of a scanned rainfall record.</figcaption>
 					</figure>
 				</div>
@@ -119,22 +151,38 @@
 				
 				<div class="figure-group">
 					<figure class="half">
-						<img src="images/1-1.png" />
+						<picture>
+							<source type="image/webp" srcset="images/webp/1-1_1x.webp 1x, images/webp/1-1_1.5x.webp 1.5x, images/webp/1-1_2x.webp 2x">
+							<source type="image/png" srcset="images/1-1_1x.png 1x, images/1-1_1.5x.png 1.5x, images/1-1_2x.png 2x">
+							<img src="images/1-1_1x.png">
+						</picture>
 						<figcaption>The original image being transformed to parallel the view port</figcaption>
 					</figure>
 					
 					<figure class="half">
-						<img src="images/1-2.png" />
+						<picture>
+							<source type="image/webp" srcset="images/webp/1-2_1x.webp 1x, images/webp/1-2_1.5x.webp 1.5x, images/webp/1-2_2x.webp 2x">
+							<source type="image/png" srcset="images/1-2_1x.png 1x, images/1-2_1.5x.png 1.5x, images/1-2_2x.png 2x">
+							<img src="images/1-2_1x.png">
+						</picture>
 						<figcaption>Vertical lines being analyzed and extracted</figcaption>
 					</figure>
 					
 					<figure class="half">
-						<img src="images/1-3.png" />
+						<picture>
+							<source type="image/webp" srcset="images/webp/1-3_1x.webp 1x, images/webp/1-3_1.5x.webp 1.5x, images/webp/1-3_2x.webp 2x">
+							<source type="image/png" srcset="images/1-3_1x.png 1x, images/1-3_1.5x.png 1.5x, images/1-3_2x.png 2x">
+							<img src="images/1-3_1x.png">
+						</picture>
 						<figcaption>Horizontal lines being analyzed and extracted</figcaption>
 					</figure>
 					
 					<figure class="half">
-						<img src="images/1-4.png" />
+						<picture>
+							<source type="image/webp" srcset="images/webp/1-4_1x.webp 1x, images/webp/1-4_1.5x.webp 1.5x, images/webp/1-4_2x.webp 2x">
+							<source type="image/png" srcset="images/1-4_1x.png 1x, images/1-4_1.5x.png 1.5x, images/1-4_2x.png 2x">
+							<img src="images/1-4_1x.png">
+						</picture>
 						<figcaption>The extracted lines combined and the PDR identified</figcaption>
 					</figure>
 				</div>
@@ -147,18 +195,30 @@
 				
 				<div class="figure-group">
 					<figure class="half">
-						<img src="images/2-1.png" />
+						<picture>
+							<source type="image/webp" srcset="images/webp/2-1_1x.webp 1x, images/webp/2-1_1.5x.webp 1.5x">
+							<source type="image/png" srcset="images/2-1_1x.png 1x, images/2-1_1.5x.png 1.5x">
+							<img src="images/2-1_1x.png">
+						</picture>
 						<figcaption>Isolating the vertical lines in the image</figcaption>
 					</figure>
 					
 					<figure class="half">
-						<img src="images/2-2.png" />
+						<picture>
+							<source type="image/webp" srcset="images/webp/2-2_1x.webp 1x, images/webp/2-2_1.5x.webp 1.5x">
+							<source type="image/png" srcset="images/2-2_1x.png 1x, images/2-2_1.5x.png 1.5x">
+							<img src="images/2-2_1x.png">
+						</picture>
 						<figcaption>Identifying the column locations in the original image</figcaption>
 					</figure>
 				</div>
 				
 				<figure>
-					<img src="images/2-3.png" />
+					<picture>
+						<source type="image/webp" srcset="images/webp/2-3_1x.webp 1x, images/webp/2-3_1.5x.webp 1.5x">
+						<source type="image/png" srcset="images/2-3_1x.png 1x, images/2-3_1.5x.png 1.5x">
+						<img src="images/2-3_1x.png">
+					</picture>
 					<figcaption>The final result - each column as a separate image</figcaption>
 				</figure>
 				
@@ -167,35 +227,55 @@
 				<p>After some brain storming, my eureka moment came when I realized there are row markers – the months of the year – and by plugging the text into an OCR library, the locations of each row could be ‘read’ from the page!</p>
 				
 				<figure>
-					<img src="images/PDR_Marked.png" />
+					<picture>
+						<source type="image/webp" srcset="images/webp/PDR_Marked_1x.webp 1x">
+						<source type="image/jpeg" srcset="images/PDR_Marked_1x.jpg 1x">
+						<img src="images/PDR_Marked_1x.jpg">
+					</picture>
 					<figcaption>Field names on the left hand side of the 'Primary Data Region' provide row markers</figcaption>
 				</figure>
 				
 				<p>Unfortunately, 100 year old type writer text (the records stretch back to the late 1800s) didn’t always play well with out-of-the-box <a href="https://opensource.google/projects/tesseract">Tesseract OCR library</a> and trying to make sense of the occasional <code>RT a</code>, <code>Bist</code>, <code>ACen ayindensy</code> or <code>Ppa</code> was hardly a robust solution.</p>
 				
 				<figure>
-					<img src="images/BadTesseract.png" />
+					<picture>
+						<source type="image/webp" srcset="images/webp/BadTesseract_1x.webp 1x">
+						<source type="image/png" srcset="images/BadTesseract_1x.png 1x">
+						<img src="images/BadTesseract_1x.png">
+					</picture>
 					<figcaption>Incorrectly predicted values from off the shelf OCR of the field names</figcaption>
 				</figure>
 				
 				<p>Back at the drawing board, I was researching ways to teach Tesseract to better recognise 100 year old type writer text when I realised: I didn’t actually need to read the text, I just needed to recognise twelve different words – the months of the year.</p>
 				
 				<figure>
-					<img src="images/MonthLabels.png" />
+					<picture>
+						<source type="image/webp" srcset="images/webp/MonthLabels_1x.webp 1x">
+						<source type="image/png" srcset="images/MonthLabels_1x.png 1x">
+						<img src="images/MonthLabels_1x.png">
+					</picture>
 					<figcaption>The twelve month labels that can be fed into a neural network to identify row locations</figcaption>
 				</figure>
 				
 				<p>And thus, a trivially simple neural network was defined and trained to recognise the 17 words in the primary data region and a robust process for finding row coordinates was created.</p>
 				
 				<figure>
-					<img src="images/2-6.png" />
+					<picture>
+						<source type="image/webp" srcset="images/webp/2-6_1x.webp 1x">
+						<source type="image/png" srcset="images/2-6_1x.png 1x">
+						<img src="images/2-6_1x.png">
+					</picture>
 					<figcaption>Object detection and basic machine learning used to 'read' the page and find the row boundaries for each month</figcaption>
 				</figure>
 				
 				<p>Et voila, with the row and column coordinates, finally a grid of individual cells could be extracted for digit detection!</p>
 				
 				<figure>
-					<img src="images/2-7.png" />
+					<picture>
+						<source type="image/webp" srcset="images/webp/2-7_1x.webp 1x">
+						<source type="image/png" srcset="images/2-7_1x.png 1x">
+						<img src="images/2-7_1x.png">
+					</picture>
 					<figcaption>The resulting cartesian grid of cells, one for each year-month combination</figcaption>
 				</figure>
 				
@@ -204,7 +284,11 @@
 				<p>The final stage of the image processing workflow was to ‘read’ the digits in the cell and report a numeric value. Having already determined that off-the-shelf OCR libraries are poor at processing handwriting, and buoyed by the success of my simple AI for reading the months of the year, I decided to create another neural network to identify the numeric value of each cell.</p>
 				
 				<figure>
-					<img src="images/SortedDigits.png" />
+					<picture>
+						<source type="image/webp" srcset="images/webp/SortedDigits_1x.webp 1x, images/webp/SortedDigits_1.5x.webp 1.5x, images/webp/SortedDigits_2x.webp 2x, images/webp/SortedDigits_2.5x.webp 2.5x">
+						<source type="image/jpeg" srcset="images/SortedDigits_1x.jpg 1x, images/SortedDigits_1.5x.jpg 1.5x, images/SortedDigits_2x.jpg 2x, images/SortedDigits_2.5x.jpg 2.5x">
+						<img src="images/SortedDigits_1x.jpg">
+					</picture>
 					<figcaption>Sorted images eventually used to train the neural network to identify individual digits</figcaption>
 				</figure>
 				
@@ -213,28 +297,44 @@
 				<p>The digits, selected with basic contour selection in OpenCV2:</p>
 				
 				<figure>
-					<img src="images/3-2.png" />
+					<picture>
+						<source type="image/webp" srcset="images/webp/3-2_1x.webp 1x">
+						<source type="image/png" srcset="images/3-2_1x.png 1x">
+						<img src="images/3-2_1x.png">
+					</picture>
 					<figcaption>A single cell with each component digit highlighted to be identified individually</figcaption>
 				</figure>
 				
 				<p>Were then pre-processed to be run through the neural network:</p>
 				
 				<figure>
-					<img src="images/3-3.png" />
+					<picture>
+						<source type="image/webp" srcset="images/webp/3-3_1x.webp 1x, images/webp/3-3_1.5x.webp 1.5x">
+						<source type="image/png" srcset="images/3-3_1x.png 1x, images/3-3_1.5x.png 1.5x">
+						<img src="images/3-3_1x.png">
+					</picture>
 					<figcaption>The component digits of a cell prepared for a neural network to predict their value</figcaption>
 				</figure>
 				
 				<p>And, with all the digit predictions combined, a single, numeric, value was outputted for the cell:</p>
 				
 				<figure>
-					<img src="images/PredictedValues.png" />
+					<picture>
+						<source type="image/webp" srcset="images/webp/PredictedValues_1x.webp 1x, images/webp/PredictedValues_1.5x.webp 1.5x, images/webp/PredictedValues_2x.webp 2x, images/webp/PredictedValues_2.5x.webp 2.5x, images/webp/PredictedValues_3x.webp 3x">
+						<source type="image/png" srcset="images/PredictedValues_1x.png 1x, images/PredictedValues_1.5x.png 1.5x, images/PredictedValues_2x.png 2x, images/PredictedValues_2.5x.png 2.5x, images/PredictedValues_3x.png 3x">
+						<img src="images/PredictedValues_1x.png">
+					</picture>
 					<figcaption>The value of a cell (built from the individually predicted digits)</figcaption>
 				</figure>
 				
 				<p>Thus, having trained a second neural network to read the component digits of each cell, the workflow was complete and finally, numeric predictions of each cell could be produced at scale.</p>
 				
 				<figure>
-					<img src="images/SideBySide.png" />
+					<picture>
+						<source type="image/webp" srcset="images/webp/SideBySide_1x.webp 1x, images/webp/SideBySide_1.5x.webp 1.5x, images/webp/SideBySide_2x.webp 2x, images/webp/SideBySide_2.5x.webp 2.5x">
+						<source type="image/jpeg" srcset="images/SideBySide_1x.jpg 1x, images/SideBySide_1.5x.jpg 1.5x, images/SideBySide_2x.jpg 2x, images/SideBySide_2.5x.jpg 2.5x">
+						<img src="images/SideBySide_1x.jpg">
+					</picture>
 					<figcaption>The outputted CSV file of predictions next to the original PDF input</figcaption>
 				</figure>
 				
@@ -243,7 +343,11 @@
 				<p>After two weeks of work and armed with the capability to turn a PDF scan into a CSV of predictions, I logged back onto the Rainfall Rescue page. It was at that moment that I realized 16,000 volunteers, with a COVID-19 lockdown to reckon with, had surpassed the projects volunteering expectations and <i>smashed</i> through the remaining 60,000 pages in record time.</p>
 				
 				<figure>
-					<img src="images/ProjectOver.png" />
+					<picture>
+						<source type="image/webp" srcset="images/webp/ProjectOver_1x.webp 1x">
+						<source type="image/jpeg" srcset="images/ProjectOver_1x.jpg 1x">
+						<img src="images/ProjectOver_1x.jpg">
+					</picture>
 					<figcaption>The Rainfall Rescue Project, just as my data processing workflow came online.</figcaption>
 				</figure>
 				
@@ -251,19 +355,21 @@
 				
 				<p>In direct contrast to that, my predictions were averaging around 88% and dipping below 80% in some cases!</p>
 				
-				<figure>
-					<img src="images/Accuracy.png" />
-					<figcaption>Percentage accuracy of thirty four PDF scans tested with the prediction workflow</figcaption>
-				</figure>
+				<picture>
+					<source type="image/webp" srcset="images/webp/Accuracy_1x.webp 1x">
+					<source type="image/jpeg" srcset="images/Accuracy_1x.jpg 1x">
+					<img src="images/Accuracy_1x.jpg">
+				</picture>
 				
 				<p>While the Rainfall Rescue Project was complete and my work wouldn't have added anything to the data set, I spent a couple more days analysing the results as I was interested in improving the original prediction accuracy as much as possible.</p>
 				
 				<p>To identify the most common prediction issues I created a simple 'Manual Verification' web app.</p>
 				
-				<figure>
-					<img src="images/ManualVerification.png" />
-					<figcaption>A web app to perform rapid visual verification and error identification</figcaption>
-				</figure>
+				<picture>
+					<source type="image/webp" srcset="images/webp/ManualVerification_1x.webp 1x, images/webp/ManualVerification_1.5x.webp 1.5x, images/webp/ManualVerification_2x.webp 2x, images/webp/ManualVerification_2.5x.webp 2.5x">
+					<source type="image/jpeg" srcset="images/ManualVerification_1x.jpg 1x, images/ManualVerification_1.5x.jpg 1.5x, images/ManualVerification_2x.jpg 2x, images/ManualVerification_2.5x.jpg 2.5x">
+					<img src="images/ManualVerification_1x.jpg">
+				</picture>
 				
 				<p>Designed to aid rapid visual verification and enable error identification, the web app used a point and click interface to highlight problematic predictions</p>
 				
@@ -271,22 +377,38 @@
 				
 				<div class="figure-group">
 					<figure class="quarter">
-						<img src="images/Issue-1.png" />
+						<picture>
+							<source type="image/webp" srcset="images/webp/Issue-1_1x.webp 1x">
+							<source type="image/jpeg" srcset="images/Issue-1_1x.jpg 1x">
+							<img src="images/Issue-1_1x.jpg">
+						</picture>
 						<figcaption>Ink smudges</figcaption>
 					</figure>
 					
 					<figure class="quarter">
-						<img src="images/Issue-2.png" />
+						<picture>
+							<source type="image/webp" srcset="images/webp/Issue-2_1x.webp 1x">
+							<source type="image/jpeg" srcset="images/Issue-2_1x.jpg 1x">
+							<img src="images/Issue-2_1x.jpg">
+						</picture>
 						<figcaption>Conjoined digits</figcaption>
 					</figure>
 					
 					<figure class="quarter">
-						<img src="images/Issue-3.png" />
+						<picture>
+							<source type="image/webp" srcset="images/webp/Issue-3_1x.webp 1x">
+							<source type="image/jpeg" srcset="images/Issue-3_1x.jpg 1x">
+							<img src="images/Issue-3_1x.jpg">
+						</picture>
 						<figcaption>Poor alignment</figcaption>
 					</figure>
 					
 					<figure class="quarter">
-						<img src="images/Issue-4.png" />
+						<picture>
+							<source type="image/webp" srcset="images/webp/Issue-4_1x.webp 1x">
+							<source type="image/jpeg" srcset="images/Issue-4_1x.jpg 1x">
+							<img src="images/Issue-4_1x.jpg">
+						</picture>
 						<figcaption>Decimal place confusion</figcaption>
 					</figure>
 				</div>
